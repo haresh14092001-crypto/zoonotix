@@ -1,0 +1,14 @@
+# Ignore common system and editor files
+node_modules/
+.vscode/
+.DS_Store
+*.log
+*.tmp
+# OS files
+Thumbs.db
+desktop.ini
+# Ignore Python compiled files
+__pycache__/
+*.py[cod]
+# Ignore credentials
+.env
