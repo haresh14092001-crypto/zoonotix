@@ -478,7 +478,7 @@ function showDisease(cat, id) {
               </div>
               <div class="kv-item">
                 <div class="kv-key">Susceptible Hosts</div>
-                <div class="kv-val">\${d.hosts.join(', ')}</div>
+                <div class="kv-val">\${Array.isArray(d.hosts) ? d.hosts.join(', ') : (d.hosts || 'Multiple species')}</div>
               </div>
               <div class="kv-item">
                 <div class="kv-key">Occupational Risks</div>
@@ -753,7 +753,7 @@ function showDisease(cat, id) {
           <div class="revision-grid">
             <div class="revision-item">
               <div class="revision-label">Causative Agent</div>
-              <div class="revision-value" style="font-style:italic;">\${ext.etiology.split(';')[0]}</div>
+              <div class="revision-value" style="font-style:italic;">\${(ext.etiology || d.agent || 'Unknown agent').split(';')[0]}</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Reservoir Host</div>
@@ -761,7 +761,7 @@ function showDisease(cat, id) {
             </div>
             <div class="revision-item">
               <div class="revision-label">Main Transmission</div>
-              <div class="revision-value">\${d.vector} / \${d.spread.split(' ').slice(0, 3).join(' ')}</div>
+              <div class="revision-value">\${d.vector} / \${(d.spread || d.vector || 'Direct contact').split(' ').slice(0, 3).join(' ')}</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Hallmark Signs</div>
@@ -769,15 +769,15 @@ function showDisease(cat, id) {
             </div>
             <div class="revision-item">
               <div class="revision-label">Best Lab Test</div>
-              <div class="revision-value">\${ext.diagnosis.tests[0].test}</div>
+              <div class="revision-value">\${ext.diagnosis.tests && ext.diagnosis.tests.length > 0 ? ext.diagnosis.tests[0].test : 'PCR'}</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Major Lesion</div>
-              <div class="revision-value">\${ext.lesionsDesc.hallmark.split(' ').slice(0, 5).join(' ')}...</div>
+              <div class="revision-value">\${(ext.lesionsDesc && ext.lesionsDesc.hallmark ? ext.lesionsDesc.hallmark.split(' ').slice(0, 5).join(' ') : 'Tissue changes noted')}...</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Primary Prevention</div>
-              <div class="revision-value">\${ext.control.farm.split(' ').slice(0, 4).join(' ')}...</div>
+              <div class="revision-value">\${(ext.control && ext.control.farm ? ext.control.farm.split(' ').slice(0, 4).join(' ') : 'Biosecurity measures')}...</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">One Health Takeaway</div>

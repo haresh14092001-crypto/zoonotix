@@ -3,7 +3,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="ZoonotiX — A comprehensive veterinary zoonotic disease encyclopedia for BVSc students. Covers 38 zoonoses with clinical signs, epidemiology, diagnosis and treatment.">
+<meta name="keywords" content="zoonotic diseases, veterinary, BVSc, salmonella, rabies, anthrax, brucellosis, zoonosis, India">
 <title>ZoonotiX - Veterinary Zoonotic Disease Encyclopedia</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -526,6 +531,7 @@ color: var(--text); font-size: 14px; font-family: 'DM Sans', sans-serif;
 </head>
 <body>
 
+<a href="#main-content" style="position:absolute;left:-9999px;top:4px;width:1px;height:1px;overflow:hidden;background:var(--accent);color:#000;padding:8px 16px;border-radius:4px;font-weight:600;z-index:9999;text-decoration:none;" onfocus="this.style.left='50%';this.style.transform='translateX(-50%)';this.style.width='auto';this.style.height='auto';" onblur="this.style.left='-9999px';this.style.width='1px';this.style.height='1px';">Skip to main content</a>
 <header>
 <div class="header-inner">
 <div class="logo-row">
@@ -544,7 +550,7 @@ color: var(--text); font-size: 14px; font-family: 'DM Sans', sans-serif;
 </div>
 </header>
 
-<main>
+<main id="main-content">
 
 <!-- HOME / CATEGORY VIEW -->
 
@@ -558,41 +564,41 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 <div id="search-wrapper" style="display:none;">
 <div class="search-bar">
 <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-<input type="text" id="search-input" placeholder="Search diseases..." oninput="searchDiseases(this.value)">
+<input type="text" id="search-input" placeholder="Search diseases..." aria-label="Search all zoonotic diseases" autocomplete="off" oninput="searchDiseases(this.value)">
 </div>
 <div id="search-results" class="disease-list"></div>
 </div>
 
 <div id="cat-grid" class="categories-grid">
-<div class="cat-card" data-cat="bacterial" onclick="showCategory('bacterial')">
+<div class="cat-card" data-cat="bacterial" role="button" tabindex="0" aria-label="Browse bacterial zoonoses" onclick="showCategory('bacterial')" onkeydown="if(event.key==='Enter'||event.key===' '){showCategory('bacterial');}">
 <span class="cat-emoji" aria-hidden="true"><svg class="icon icon-lab" aria-hidden="true"><use href="assets/icons/ze-icons.svg#lab"></use></svg></span>
 <div class="cat-name">Bacterial</div>
 <div class="cat-desc">Diseases caused by pathogenic bacteria transmissible between animals and humans.</div>
 <div class="cat-count">12 DISEASES</div>
 <div class="cat-arrow">→</div>
 </div>
-<div class="cat-card" data-cat="viral" onclick="showCategory('viral')">
+<div class="cat-card" data-cat="viral" role="button" tabindex="0" aria-label="Browse viral zoonoses" onclick="showCategory('viral')" onkeydown="if(event.key==='Enter'||event.key===' '){showCategory('viral');}">
 <span class="cat-emoji" aria-hidden="true"><svg class="icon icon-dna" aria-hidden="true"><use href="assets/icons/ze-icons.svg#dna"></use></svg></span>
 <div class="cat-name">Viral</div>
 <div class="cat-desc">Viral agents of zoonotic importance including emerging and re-emerging infections.</div>
 <div class="cat-count">10 DISEASES</div>
 <div class="cat-arrow">→</div>
 </div>
-<div class="cat-card" data-cat="fungal" onclick="showCategory('fungal')">
+<div class="cat-card" data-cat="fungal" role="button" tabindex="0" aria-label="Browse fungal zoonoses" onclick="showCategory('fungal')" onkeydown="if(event.key==='Enter'||event.key===' '){showCategory('fungal');}">
 <span class="cat-emoji" aria-hidden="true"><svg class="icon icon-mushroom" aria-hidden="true"><use href="assets/icons/ze-icons.svg#mushroom"></use></svg></span>
 <div class="cat-name">Fungal</div>
 <div class="cat-desc">Mycotic infections with zoonotic potential, including dermatophytes and systemic fungi.</div>
 <div class="cat-count">4 DISEASES</div>
 <div class="cat-arrow">→</div>
 </div>
-<div class="cat-card" data-cat="parasitic" onclick="showCategory('parasitic')">
+<div class="cat-card" data-cat="parasitic" role="button" tabindex="0" aria-label="Browse parasitic zoonoses" onclick="showCategory('parasitic')" onkeydown="if(event.key==='Enter'||event.key===' '){showCategory('parasitic');}">
 <span class="cat-emoji" aria-hidden="true"><svg class="icon icon-worm" aria-hidden="true"><use href="assets/icons/ze-icons.svg#worm"></use></svg></span>
 <div class="cat-name">Parasitic</div>
 <div class="cat-desc">Protozoan, helminth and ectoparasite zoonoses endemic and epidemic in India.</div>
 <div class="cat-count">9 DISEASES</div>
 <div class="cat-arrow">→</div>
 </div>
-<div class="cat-card" data-cat="prion" onclick="showCategory('prion')">
+<div class="cat-card" data-cat="prion" role="button" tabindex="0" aria-label="Browse prion zoonoses" onclick="showCategory('prion')" onkeydown="if(event.key==='Enter'||event.key===' '){showCategory('prion');}">
 <span class="cat-emoji" aria-hidden="true"><svg class="icon icon-brain" aria-hidden="true"><use href="assets/icons/ze-icons.svg#brain"></use></svg></span>
 <div class="cat-name">Prion / Other</div>
 <div class="cat-desc">Transmissible spongiform encephalopathies and other atypical zoonotic agents.</div>
@@ -618,7 +624,7 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 <!-- ENCYCLOPEDIA VIEW -->
 
 <div class="view" id="view-ency">
-<button class="back-btn" id="ency-back-btn" onclick="goBackToList()">
+<button class="back-btn" onclick="goBackToList()">
 	<svg class="icon icon-arrow-left" aria-hidden="true" focusable="false"><use href="assets/icons/ze-icons.svg#arrow-left"></use></svg>
 	Back to List
 </button>
@@ -627,7 +633,6 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 
 
 
-<!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
 <div class="view" id="view-directory">
@@ -806,11 +811,13 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 	</div>
 </div>
 
-<button id="floating-search-btn" class="floating-search-btn" aria-label="Open search" aria-controls="search-overlay" aria-expanded="false">
+<button id="floating-search-btn" aria-label="Open search" aria-haspopup="dialog" class="floating-search-btn" aria-label="Open search" aria-controls="search-overlay" aria-expanded="false">
 	<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/ze-icons.svg#search"></use></svg>
 </button>
 
 <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
+
 
 
 
@@ -5412,7 +5419,7 @@ function showDisease(cat, id) {
               </div>
               <div class="kv-item">
                 <div class="kv-key">Susceptible Hosts</div>
-                <div class="kv-val">${d.hosts.join(', ')}</div>
+                <div class="kv-val">${Array.isArray(d.hosts) ? d.hosts.join(', ') : (d.hosts || 'Multiple species')}</div>
               </div>
               <div class="kv-item">
                 <div class="kv-key">Occupational Risks</div>
@@ -5687,7 +5694,7 @@ function showDisease(cat, id) {
           <div class="revision-grid">
             <div class="revision-item">
               <div class="revision-label">Causative Agent</div>
-              <div class="revision-value" style="font-style:italic;">${ext.etiology.split(';')[0]}</div>
+              <div class="revision-value" style="font-style:italic;">${(ext.etiology || d.agent || 'Unknown agent').split(';')[0]}</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Reservoir Host</div>
@@ -5695,7 +5702,7 @@ function showDisease(cat, id) {
             </div>
             <div class="revision-item">
               <div class="revision-label">Main Transmission</div>
-              <div class="revision-value">${d.vector} / ${d.spread.split(' ').slice(0, 3).join(' ')}</div>
+              <div class="revision-value">${d.vector} / ${(d.spread || d.vector || 'Direct contact').split(' ').slice(0, 3).join(' ')}</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Hallmark Signs</div>
@@ -5703,15 +5710,15 @@ function showDisease(cat, id) {
             </div>
             <div class="revision-item">
               <div class="revision-label">Best Lab Test</div>
-              <div class="revision-value">${ext.diagnosis.tests[0].test}</div>
+              <div class="revision-value">${ext.diagnosis.tests && ext.diagnosis.tests.length > 0 ? ext.diagnosis.tests[0].test : 'PCR'}</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Major Lesion</div>
-              <div class="revision-value">${ext.lesionsDesc.hallmark.split(' ').slice(0, 5).join(' ')}...</div>
+              <div class="revision-value">${(ext.lesionsDesc && ext.lesionsDesc.hallmark ? ext.lesionsDesc.hallmark.split(' ').slice(0, 5).join(' ') : 'Tissue changes noted')}...</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">Primary Prevention</div>
-              <div class="revision-value">${ext.control.farm.split(' ').slice(0, 4).join(' ')}...</div>
+              <div class="revision-value">${(ext.control && ext.control.farm ? ext.control.farm.split(' ').slice(0, 4).join(' ') : 'Biosecurity measures')}...</div>
             </div>
             <div class="revision-item">
               <div class="revision-label">One Health Takeaway</div>
