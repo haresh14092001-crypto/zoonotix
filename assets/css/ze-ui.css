@@ -210,6 +210,19 @@ line-height: 1.2;
 
 .back-btn:hover { border-color: var(--accent); color: var(--accent); }
 
+.icon {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.icon-logo {
+	width: 24px;
+	height: 24px;
+}
+
 .breadcrumb {
 	font-family: 'DM Mono', monospace;
 	font-size: 11px; color: var(--muted);

@@ -145,7 +145,11 @@ const drawersHtml = `
 </button>
 `.trim();
 
-html = html.replace('</body>', `${drawersHtml}\n</body>`);
+if (html.includes('<div id="search-overlay"')) {
+  html = html.replace('<div id="search-overlay"', `${drawersHtml}\n<div id="search-overlay"`);
+} else {
+  html += `\n${drawersHtml}`;
+}
 console.log("Inserted Drawers and overlays HTML.");
 
 // 4. Add the searchable Glossary section inside the About view
