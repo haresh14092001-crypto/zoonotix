@@ -1,0 +1,26 @@
+name: Quality
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required documentation files
+        run: |
+          test -f PROJECT_CONTEXT.md
+          test -f README.md
+          test -f QUALITY_GATE.md
+          test -f SCIENTIFIC_REVIEW_GUIDELINES.md
+          test -f DISEASE_AUTHORING_TEMPLATE.md
+      - name: Check repository structure markers
+        run: |
+          test -d docs
+          test -d .github
+          test -d tests
+      - name: Markdown lint placeholder
+        run: echo "Markdown lint checks will be wired in future iterations."

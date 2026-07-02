@@ -2,9 +2,84 @@
 
 Veterinary Zoonotic Disease Encyclopedia
 
-## Project Context
+[![Build](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Open Source](https://img.shields.io/badge/open-source-ff69b4)](https://github.com/)
+
+## Project Overview
 
 This project is being developed as a professional digital encyclopedia and educational resource for undergraduate BVSc students in collaboration with the Department of Veterinary Public Health & Epidemiology.
+
+## Vision
+
+The final product should become a modern, professional reference resource for BVSc students, interns, faculty, veterinarians, and future postgraduate education. The application is intended for departmental use and future public release.
+
+## Features
+
+- Responsive educational interface
+- Mobile-first experience
+- Professional documentation and contributor tooling
+- Repository hardening for long-term collaboration
+
+## Technology Stack
+
+- Vite
+- TypeScript
+- ESLint
+- Prettier
+- GitHub Actions
+
+## Installation
+
+```bash
+npm install
+npm run dev
+```
+
+## Development
+
+```bash
+npm run build
+npm run typecheck
+npm run lint
+npm run test
+```
+
+## Documentation
+
+- [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md)
+- [QUALITY_GATE.md](QUALITY_GATE.md)
+- [SCIENTIFIC_REVIEW_GUIDELINES.md](SCIENTIFIC_REVIEW_GUIDELINES.md)
+- [DISEASE_AUTHORING_TEMPLATE.md](DISEASE_AUTHORING_TEMPLATE.md)
+- [docs/Architecture.md](docs/Architecture.md)
+
+## Screenshots
+
+Screenshots will be added as the project evolves.
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md).
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
+
+## Acknowledgements
+
+This repository is being prepared for academic, educational, and open-source collaboration.
+
+## Future Goals
+
+- Expand documentation and scientific review processes
+- Improve test coverage and CI rigor
+- Prepare for public release and broader contributor onboarding
+
+## Project Context
 
 ### Purpose
 
