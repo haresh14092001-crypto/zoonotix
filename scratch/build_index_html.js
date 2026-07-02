@@ -262,7 +262,7 @@ function showCategory(cat) {
   container.style.setProperty('--cc', colorMap[cat]);
   
   container.innerHTML = diseases[cat].map((d, i) => \`
-    <div class="disease-card" style="--cc:\${colorMap[cat]}" onclick="showDisease('\${cat}', '\${d.id}')">
+    <div class="disease-card" style="--cc:\${colorMap[cat]}" role="button" tabindex="0" onclick="showDisease('\${cat}', '\${d.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showDisease('\${cat}', '\${d.id}') }">
       <div class="disease-num">0\${i+1}</div>
       <div class="disease-info">
         <div class="disease-name">\${d.name}</div>
@@ -431,7 +431,7 @@ function showDisease(cat, id) {
 
         <!-- 1. Disease Overview -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-book" aria-hidden="true"><use href="assets/icons/ze-icons.svg#book"></use></svg></span>
               <span class="section-name">Disease Overview & Etiology</span>
@@ -463,7 +463,7 @@ function showDisease(cat, id) {
         
         <!-- 2. Epidemiology -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-microbe" aria-hidden="true"><use href="assets/icons/ze-icons.svg#microbe"></use></svg></span>
               <span class="section-name">Epidemiology & Distribution</span>
@@ -502,7 +502,7 @@ function showDisease(cat, id) {
         
         <!-- 3. Transmission & Pathogenesis -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-transfer" aria-hidden="true"><use href="assets/icons/ze-icons.svg#transfer"></use></svg></span>
               <span class="section-name">Transmission Cycle & Pathogenesis</span>
@@ -520,7 +520,7 @@ function showDisease(cat, id) {
         
         <!-- 4. Clinical Signs -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-hospital" aria-hidden="true"><use href="assets/icons/ze-icons.svg#hospital"></use></svg></span>
               <span class="section-name">Clinical Signs & Manifestations</span>
@@ -571,7 +571,7 @@ function showDisease(cat, id) {
 
         <!-- 5. Lesions -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-shield" aria-hidden="true"><use href="assets/icons/ze-icons.svg#shield"></use></svg></span>
               <span class="section-name">Pathology & Lesions</span>
@@ -598,7 +598,7 @@ function showDisease(cat, id) {
 
         <!-- 6. Diagnosis -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-india-flag" aria-hidden="true"><use href="assets/icons/ze-icons.svg#india-flag"></use></svg></span>
               <span class="section-name">Diagnostics & Lab Workflows</span>
@@ -647,7 +647,7 @@ function showDisease(cat, id) {
 
         <!-- 7. Treatment -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-bolt" aria-hidden="true"><use href="assets/icons/ze-icons.svg#bolt"></use></svg></span>
               <span class="section-name">Treatment & Supportive Care</span>
@@ -674,7 +674,7 @@ function showDisease(cat, id) {
 
         <!-- 8. Control & Prevention -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-shield" aria-hidden="true"><use href="assets/icons/ze-icons.svg#shield"></use></svg></span>
               <span class="section-name">Prevention, Biosecurity & Control</span>
@@ -706,7 +706,7 @@ function showDisease(cat, id) {
 
         <!-- 9. Public Health Significance -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-book" aria-hidden="true"><use href="assets/icons/ze-icons.svg#book"></use></svg></span>
               <span class="section-name">Public Health & Economics</span>
@@ -733,7 +733,7 @@ function showDisease(cat, id) {
 
         <!-- 10. One Health Integration -->
         <div class="ency-section">
-          <div class="section-header" onclick="toggleSectionCollapse(this)">
+          <div class="section-header" role="button" tabindex="0" onclick="toggleSectionCollapse(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSectionCollapse(this) }">
             <div class="section-header-left">
               <span class="section-icon" aria-hidden="true"><svg class="icon icon-transfer" aria-hidden="true"><use href="assets/icons/ze-icons.svg#transfer"></use></svg></span>
               <span class="section-name">One Health Integration</span>
@@ -945,7 +945,7 @@ function searchDiseases(query) {
   }
   
   results.innerHTML = matches.map(({ cat, d }, i) => \`
-    <div class="disease-card" style="--cc:\${colorMap[cat]}" onclick="showDisease('\${cat}', '\${d.id}')">
+    <div class="disease-card" style="--cc:\${colorMap[cat]}" role="button" tabindex="0" onclick="showDisease('\${cat}', '\${d.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showDisease('\${cat}', '\${d.id}') }">
       <div class="disease-num">0\text{ }\${i+1}</div>
       <div class="disease-info">
         <div class="disease-name">\${d.name}</div>
