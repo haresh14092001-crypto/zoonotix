@@ -626,6 +626,7 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 </div>
 
 
+
 <!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
 <div class="view" id="view-directory">
@@ -759,110 +760,11 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
   </div>
   <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
 </div>
-<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
-  <h3>Veterinary Zoonoses Glossary</h3>
-  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
-  <div class="search-bar" style="margin-bottom:16px;">
-    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
-  </div>
-  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
-</div>
-<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
-  <h3>Veterinary Zoonoses Glossary</h3>
-  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
-  <div class="search-bar" style="margin-bottom:16px;">
-    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
-  </div>
-  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
-</div>
-<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
-  <h3>Veterinary Zoonoses Glossary</h3>
-  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
-  <div class="search-bar" style="margin-bottom:16px;">
-    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
-  </div>
-  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
-</div>
-<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
-  <h3>Veterinary Zoonoses Glossary</h3>
-  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
-  <div class="search-bar" style="margin-bottom:16px;">
-    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
-  </div>
-  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
-</div>
-<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
-  <h3>Veterinary Zoonoses Glossary</h3>
-  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
-  <div class="search-bar" style="margin-bottom:16px;">
-    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
-  </div>
-  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
-</div>
 </div>
 </div>
 
 </main>
 
-<!-- Drawers, Modals & Floating Buttons -->
-<div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
-
-<div id="toc-drawer" class="toc-drawer">
-  <div class="toc-drawer-header">
-    <div class="toc-drawer-title">Table of Contents</div>
-    <button class="toc-drawer-close" onclick="closeAllDrawers()">&times;</button>
-  </div>
-  <div class="toc-drawer-content" id="toc-drawer-list"></div>
-</div>
-
-<div id="glossary-tooltip" class="glossary-tooltip">
-  <div class="gt-header">
-    <div class="gt-term" id="gt-term-title">Term</div>
-    <button class="gt-close" onclick="closeGlossaryTooltip()">&times;</button>
-  </div>
-  <div class="gt-def" id="gt-term-def">Definition goes here...</div>
-  <a href="#" class="gt-def-link" onclick="openGlossaryTab(event)">Browse full glossary →</a>
-</div>
-
-<button id="back-to-top-btn" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
-  &uarr;
-</button>
-
-<button id="mobile-toc-btn" class="mobile-toc-fab" onclick="toggleMobileTOC(true)" aria-label="Table of Contents">
-  <svg class="icon" aria-hidden="true" style="width:20px;height:20px;"><use href="assets/icons/ze-icons.svg#book"></use></svg>
-</button>
-<!-- Drawers, Modals & Floating Buttons -->
-<div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
-
-<div id="toc-drawer" class="toc-drawer">
-  <div class="toc-drawer-header">
-    <div class="toc-drawer-title">Table of Contents</div>
-    <button class="toc-drawer-close" onclick="closeAllDrawers()">&times;</button>
-  </div>
-  <div class="toc-drawer-content" id="toc-drawer-list"></div>
-</div>
-
-<div id="glossary-tooltip" class="glossary-tooltip">
-  <div class="gt-header">
-    <div class="gt-term" id="gt-term-title">Term</div>
-    <button class="gt-close" onclick="closeGlossaryTooltip()">&times;</button>
-  </div>
-  <div class="gt-def" id="gt-term-def">Definition goes here...</div>
-  <a href="#" class="gt-def-link" onclick="openGlossaryTab(event)">Browse full glossary →</a>
-</div>
-
-<button id="back-to-top-btn" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
-  &uarr;
-</button>
-
-<button id="mobile-toc-btn" class="mobile-toc-fab" onclick="toggleMobileTOC(true)" aria-label="Table of Contents">
-  <svg class="icon" aria-hidden="true" style="width:20px;height:20px;"><use href="assets/icons/ze-icons.svg#book"></use></svg>
-</button>
 <!-- Drawers, Modals & Floating Buttons -->
 <div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
 
@@ -908,6 +810,10 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 </button>
 
 <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
+
+
+
 
 
 
@@ -4951,15 +4857,19 @@ function renderRelatedDiseases(cat, currentId) {
       
       let score = 0;
       // 1. Same causative organism category (+3 points)
-      if (other.group === current.group) score += 3;
+      if (otherCat === cat) score += 3;
       
       // 2. Overlapping host species (+2 points per host)
-      const hostOverlap = other.hostTypes.filter(h => current.hostTypes.includes(h)).length;
+      const currentHosts = current.hosts || [];
+      const otherHosts = other.hosts || [];
+      const hostOverlap = otherHosts.filter(h => currentHosts.includes(h)).length;
       score += hostOverlap * 2;
       
-      // 3. Overlapping transmission routes (+2 points per route)
-      const transOverlap = other.transmissionTypes.filter(t => current.transmissionTypes.includes(t)).length;
-      score += transOverlap * 2;
+      // 3. Overlapping keywords (+2 points per keyword)
+      const currentKeywords = current.keywords || [];
+      const otherKeywords = other.keywords || [];
+      const keywordOverlap = otherKeywords.filter(k => currentKeywords.includes(k)).length;
+      score += keywordOverlap * 2;
       
       // 4. Same danger level (+1 point)
       if (other.danger === current.danger) score += 1;
@@ -4979,7 +4889,7 @@ function renderRelatedDiseases(cat, currentId) {
       <div class="related-grid">
         ${relatedMatches.map(m => `
           <div class="related-card" style="--cc:${colorMap[m.otherCat]}" onclick="showDisease('${m.otherCat}', '${m.other.id}')">
-            <div class="related-tag">${m.other.group} zoonosis</div>
+            <div class="related-tag">${m.otherCat} zoonosis</div>
             <div class="related-name">${m.other.name}</div>
             <div class="related-aka">${m.other.aka}</div>
           </div>

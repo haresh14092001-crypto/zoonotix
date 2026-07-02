@@ -843,15 +843,19 @@ function renderRelatedDiseases(cat, currentId) {
       
       let score = 0;
       // 1. Same causative organism category (+3 points)
-      if (other.group === current.group) score += 3;
+      if (otherCat === cat) score += 3;
       
       // 2. Overlapping host species (+2 points per host)
-      const hostOverlap = other.hostTypes.filter(h => current.hostTypes.includes(h)).length;
+      const currentHosts = current.hosts || [];
+      const otherHosts = other.hosts || [];
+      const hostOverlap = otherHosts.filter(h => currentHosts.includes(h)).length;
       score += hostOverlap * 2;
       
-      // 3. Overlapping transmission routes (+2 points per route)
-      const transOverlap = other.transmissionTypes.filter(t => current.transmissionTypes.includes(t)).length;
-      score += transOverlap * 2;
+      // 3. Overlapping keywords (+2 points per keyword)
+      const currentKeywords = current.keywords || [];
+      const otherKeywords = other.keywords || [];
+      const keywordOverlap = otherKeywords.filter(k => currentKeywords.includes(k)).length;
+      score += keywordOverlap * 2;
       
       // 4. Same danger level (+1 point)
       if (other.danger === current.danger) score += 1;
@@ -871,7 +875,7 @@ function renderRelatedDiseases(cat, currentId) {
       <div class="related-grid">
         ${relatedMatches.map(m => `
           <div class="related-card" style="--cc:${colorMap[m.otherCat]}" onclick="showDisease('${m.otherCat}', '${m.other.id}')">
-            <div class="related-tag">${m.other.group} zoonosis</div>
+            <div class="related-tag">${m.otherCat} zoonosis</div>
             <div class="related-name">${m.other.name}</div>
             <div class="related-aka">${m.other.aka}</div>
           </div>

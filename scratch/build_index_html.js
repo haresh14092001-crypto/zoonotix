@@ -110,7 +110,11 @@ const directoryHtml = `
 </div>
 `.trim();
 
-if (html.includes('<div class="view" id="view-about">')) {
+const dirStartIdx = html.indexOf('<div class="view" id="view-directory">');
+const dirEndIdx = html.indexOf('<div class="view" id="view-about">');
+if (dirStartIdx !== -1 && dirEndIdx !== -1) {
+  html = html.substring(0, dirStartIdx) + directoryHtml + '\n\n' + html.substring(dirEndIdx);
+} else if (html.includes('<div class="view" id="view-about">')) {
   html = html.replace('<div class="view" id="view-about">', `${directoryHtml}\n\n<div class="view" id="view-about">`);
 } else {
   html = html.replace('<!-- ABOUT VIEW -->', `${directoryHtml}\n\n<!-- ABOUT VIEW -->`);
@@ -148,6 +152,12 @@ const drawersHtml = `
 </button>
 `.trim();
 
+const drawersStartIdx = html.indexOf('<!-- Drawers, Modals & Floating Buttons -->');
+const drawersEndIdx = html.indexOf('<div id="search-overlay"');
+if (drawersStartIdx !== -1 && drawersEndIdx !== -1 && drawersStartIdx < drawersEndIdx) {
+  html = html.substring(0, drawersStartIdx) + html.substring(drawersEndIdx);
+}
+
 if (html.includes('<div id="search-overlay"')) {
   html = html.replace('<div id="search-overlay"', `${drawersHtml}\n<div id="search-overlay"`);
 } else {
@@ -167,6 +177,12 @@ const glossaryHtml = `
   <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
 </div>
 `.trim();
+
+const glossaryStartIdx = html.indexOf('<div class="about-card" id="about-glossary-section"');
+const glossaryEndIdx = html.indexOf('</div>\n</div>\n\n</main>');
+if (glossaryStartIdx !== -1 && glossaryEndIdx !== -1 && glossaryStartIdx < glossaryEndIdx) {
+  html = html.substring(0, glossaryStartIdx) + html.substring(glossaryEndIdx);
+}
 
 html = html.replace('</div>\n</div>\n\n</main>', `${glossaryHtml}\n</div>\n</div>\n\n</main>`);
 console.log("Inserted Searchable Glossary inside About view HTML.");
