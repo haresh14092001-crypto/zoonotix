@@ -352,7 +352,7 @@ function showDisease(cat, id) {
       government: "State reporting mandates."
     },
     publicHealth: { economic: "Productivity losses and carcass condemnation.", foodSafety: "Pasteurize milk, cook meat thoroughly.", wildlifeInterface: "Sylvatic reservoirs." },
-    onehealth: { humanConnection: "Zoonotic exposure.", animalConnection: "Domestic host cycles.", envConnection: "Fomite/soil interfaces." },
+    onehealth: { human: "Zoonotic exposure.", animal: "Domestic host cycles.", environment: "Fomite/soil interfaces." },
     references: ["WOAH Terrestrial Manual", "WHO Guidelines", "Merck Veterinary Manual"]
   };
   
@@ -781,7 +781,7 @@ function showDisease(cat, id) {
             </div>
             <div class="revision-item">
               <div class="revision-label">One Health Takeaway</div>
-              <div class="revision-value">\${ext.onehealth.humanConnection.split(' ').slice(0, 4).join(' ')}...</div>
+              <div class="revision-value">\${(ext.onehealth.human || ext.onehealth.humanConnection || 'Zoonotic exposure.').split(' ').slice(0, 4).join(' ')}...</div>
             </div>
           </div>
         </div>
