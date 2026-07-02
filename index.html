@@ -542,7 +542,6 @@ An interactive reference for veterinary students covering zoonotic diseases impo
 Select a category to explore diseases, their hosts, transmission, and clinical significance.
 </p>
 
-```
 <div id="search-wrapper" style="display:none;">
 <div class="search-bar">
 <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
@@ -588,7 +587,6 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 <div class="cat-arrow">→</div>
 </div>
 </div>
-```
 
 </div>
 
@@ -800,23 +798,23 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 
 <div class="view" id="view-about">
 <div class="section-title">About ZoonotiX</div>
-<p class="section-desc">This interactive module was designed as a Phase 1 prototype for a veterinary public health educational tool aligned to the BVSc & AH curriculum of Indian universities (VCSI / ICAR guidelines).</p>
+<p class="section-desc">This interactive module was designed as a Phase 1 prototype for a veterinary public health educational tool aligned to the BVSc &amp; AH curriculum of Indian universities (VCSI / ICAR guidelines).</p>
 <div class="about-grid">
 <div class="about-card">
 <h3>Target Audience</h3>
-<p>Final-year (UG Year III) veterinary students enrolled in the BVSc & AH programme at Indian veterinary colleges under ICAR/VCSI syllabus. Designed as a supplementary reference for Veterinary Public Health & Epidemiology (VPH & E) coursework.</p>
+<p>Final-year (UG Year III) veterinary students enrolled in the BVSc &amp; AH programme at Indian veterinary colleges under ICAR/VCSI syllabus. Designed as a supplementary reference for Veterinary Public Health &amp; Epidemiology (VPH &amp; E) coursework.</p>
 </div>
 <div class="about-card">
-<h3>Scope & Purpose</h3>
+<h3>Scope &amp; Purpose</h3>
 <p>Covers zoonotic diseases of established importance in the Indian context including OIE-notifiable diseases, NVBDCP-priority pathogens, and emerging infections relevant to South Asia. Each entry functions as a concise encyclopedia article.</p>
 </div>
 <div class="about-card">
 <h3>Syllabus Alignment</h3>
 <ul class="syllabus-list">
-<li>Veterinary Public Health & Epidemiology</li>
-<li>Veterinary Microbiology & Immunology</li>
+<li>Veterinary Public Health &amp; Epidemiology</li>
+<li>Veterinary Microbiology &amp; Immunology</li>
 <li>Veterinary Parasitology</li>
-<li>Animal Husbandry & Extension</li>
+<li>Animal Husbandry &amp; Extension</li>
 <li>OIE / WHO / NVBDCP priority zoonoses</li>
 </ul>
 </div>
@@ -824,11 +822,20 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 <h3>Phase Roadmap</h3>
 <ul class="syllabus-list">
 <li>Phase 1 - Static disease encyclopedia (current)</li>
-<li>Phase 2 - AI-powered Q&A per disease</li>
+<li>Phase 2 - AI-powered Q&amp;A per disease</li>
 <li>Phase 3 - Case-based learning scenarios</li>
-<li>Phase 4 - Assessment & MCQ module</li>
+<li>Phase 4 - Assessment &amp; MCQ module</li>
 <li>Phase 5 - Mobile app (iOS / Android)</li>
 </ul>
+</div>
+<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
+  <h3>Veterinary Zoonoses Glossary</h3>
+  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
+  <div class="search-bar" style="margin-bottom:16px;">
+    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
+    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
+  </div>
+  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
 </div>
 </div>
 </div>
@@ -853,10 +860,6 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 </button>
 
 <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
-
-
-
-
 
 <script>
 const colorMap = {
@@ -3764,7 +3767,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 const svgEngine = {
   // 1. Draw Transmission Cycle
-  drawTransmissionCycle(d, ext) {
+  drawTransmissionCycle(d, ext, colorOverride) {
     const cycle = ext.transmissionCycle || {
       reservoir: ext.pathogenesis?.entry || "Reservoir",
       vector: d.vector || "Direct / Indirect Contact",
@@ -3774,7 +3777,7 @@ const svgEngine = {
     };
 
     const hasVector = d.vector && d.vector.toLowerCase() !== 'none';
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
 
     return `
 <svg class="visual-svg" viewBox="0 0 800 280" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -3848,7 +3851,7 @@ const svgEngine = {
   },
 
   // 2. Draw Pathogenesis Flow
-  drawPathogenesisFlow(d, ext) {
+  drawPathogenesisFlow(d, ext, colorOverride) {
     const p = ext.pathogenesis || {
       entry: "Portal of entry",
       spread: "Viremia / Lymphatic spread",
@@ -3856,7 +3859,7 @@ const svgEngine = {
       lesions: "Primary pathology"
     };
 
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
     const targetOrgansStr = Array.isArray(p.organs) ? p.organs.join(' & ') : p.organs;
 
     return `
@@ -3922,13 +3925,13 @@ const svgEngine = {
   },
 
   // 3. Draw One Health Triangle Intersection
-  drawOneHealthTriangle(d, ext) {
+  drawOneHealthTriangle(d, ext, colorOverride) {
     const oh = ext.onehealth || {};
     const humanConnection = oh.human || "Direct contact zoonotic spillover";
     const animalConnection = oh.animal || "Intraspecies transmission cycles";
     const envConnection = oh.environment || "Fomite and environmental persistence";
 
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
 
     return `
 <svg class="visual-svg" viewBox="0 0 600 420" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -3973,7 +3976,7 @@ const svgEngine = {
   },
 
   // 4. Draw Diagnostic Workflow
-  drawDiagnosticWorkflow(d, ext) {
+  drawDiagnosticWorkflow(d, ext, colorOverride) {
     const dx = ext.diagnosis || {
       history: "History indicators",
       signs: "Clinical signs",
@@ -3981,7 +3984,7 @@ const svgEngine = {
       tests: [{ test: "Direct test", type: "Standard" }]
     };
 
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
     const primaryTest = dx.tests[0] ? dx.tests[0].test : "Lab Assay";
 
     return `
@@ -5782,10 +5785,10 @@ function showDisease(cat, id) {
     
     // Inject dynamically drawn SVGs from svgEngine
     if (window.svgEngine) {
-      document.getElementById('transmission-cycle-container').innerHTML = window.svgEngine.drawTransmissionCycle(d, ext);
-      document.getElementById('pathogenesis-flow-container').innerHTML = window.svgEngine.drawPathogenesisFlow(d, ext);
-      document.getElementById('one-health-triangle-container').innerHTML = window.svgEngine.drawOneHealthTriangle(d, ext);
-      document.getElementById('diagnostic-workflow-container').innerHTML = window.svgEngine.drawDiagnosticWorkflow(d, ext);
+      document.getElementById('transmission-cycle-container').innerHTML = window.svgEngine.drawTransmissionCycle(d, ext, cc);
+      document.getElementById('pathogenesis-flow-container').innerHTML = window.svgEngine.drawPathogenesisFlow(d, ext, cc);
+      document.getElementById('one-health-triangle-container').innerHTML = window.svgEngine.drawOneHealthTriangle(d, ext, cc);
+      document.getElementById('diagnostic-workflow-container').innerHTML = window.svgEngine.drawDiagnosticWorkflow(d, ext, cc);
     }
     
     // Contextual glossary highlighting
@@ -6029,4 +6032,34 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 </script>
+
+<!-- Drawers, Modals & Floating Buttons -->
+<div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
+
+<div id="toc-drawer" class="toc-drawer">
+  <div class="toc-drawer-header">
+    <div class="toc-drawer-title">Table of Contents</div>
+    <button class="toc-drawer-close" onclick="closeAllDrawers()">&times;</button>
+  </div>
+  <div class="toc-drawer-content" id="toc-drawer-list"></div>
+</div>
+
+<div id="glossary-tooltip" class="glossary-tooltip">
+  <div class="gt-header">
+    <div class="gt-term" id="gt-term-title">Term</div>
+    <button class="gt-close" onclick="closeGlossaryTooltip()">&times;</button>
+  </div>
+  <div class="gt-def" id="gt-term-def">Definition goes here...</div>
+  <a href="#" class="gt-def-link" onclick="openGlossaryTab(event)">Browse full glossary &rarr;</a>
+</div>
+
+<button id="back-to-top-btn" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+  &uarr;
+</button>
+
+<button id="mobile-toc-btn" class="mobile-toc-fab" onclick="toggleMobileTOC(true)" aria-label="Table of Contents">
+  <svg class="icon" aria-hidden="true" style="width:20px;height:20px;"><use href="assets/icons/ze-icons.svg#book"></use></svg>
+</button>
+
+</body>
 </html>

@@ -5,7 +5,7 @@
 
 const svgEngine = {
   // 1. Draw Transmission Cycle
-  drawTransmissionCycle(d, ext) {
+  drawTransmissionCycle(d, ext, colorOverride) {
     const cycle = ext.transmissionCycle || {
       reservoir: ext.pathogenesis?.entry || "Reservoir",
       vector: d.vector || "Direct / Indirect Contact",
@@ -15,7 +15,7 @@ const svgEngine = {
     };
 
     const hasVector = d.vector && d.vector.toLowerCase() !== 'none';
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
 
     return `
 <svg class="visual-svg" viewBox="0 0 800 280" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +89,7 @@ const svgEngine = {
   },
 
   // 2. Draw Pathogenesis Flow
-  drawPathogenesisFlow(d, ext) {
+  drawPathogenesisFlow(d, ext, colorOverride) {
     const p = ext.pathogenesis || {
       entry: "Portal of entry",
       spread: "Viremia / Lymphatic spread",
@@ -97,7 +97,7 @@ const svgEngine = {
       lesions: "Primary pathology"
     };
 
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
     const targetOrgansStr = Array.isArray(p.organs) ? p.organs.join(' & ') : p.organs;
 
     return `
@@ -163,13 +163,13 @@ const svgEngine = {
   },
 
   // 3. Draw One Health Triangle Intersection
-  drawOneHealthTriangle(d, ext) {
+  drawOneHealthTriangle(d, ext, colorOverride) {
     const oh = ext.onehealth || {};
     const humanConnection = oh.human || "Direct contact zoonotic spillover";
     const animalConnection = oh.animal || "Intraspecies transmission cycles";
     const envConnection = oh.environment || "Fomite and environmental persistence";
 
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
 
     return `
 <svg class="visual-svg" viewBox="0 0 600 420" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -214,7 +214,7 @@ const svgEngine = {
   },
 
   // 4. Draw Diagnostic Workflow
-  drawDiagnosticWorkflow(d, ext) {
+  drawDiagnosticWorkflow(d, ext, colorOverride) {
     const dx = ext.diagnosis || {
       history: "History indicators",
       signs: "Clinical signs",
@@ -222,7 +222,7 @@ const svgEngine = {
       tests: [{ test: "Direct test", type: "Standard" }]
     };
 
-    const accentColor = colorMap[d.group] || 'var(--accent)';
+    const accentColor = colorOverride || (typeof colorMap !== 'undefined' && colorMap[d.group]) || '#00d4aa';
     const primaryTest = dx.tests[0] ? dx.tests[0].test : "Lab Assay";
 
     return `
