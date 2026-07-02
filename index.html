@@ -528,6 +528,23 @@ color: var(--text); font-size: 14px; font-family: 'DM Sans', sans-serif;
     .clinical-pearl { margin-top:12px; padding:12px; background:rgba(0,212,170,0.1); border-left:4px solid var(--accent); border-radius:4px; font-size:13px; }
     .pitfall { margin-top:12px; padding:12px; background:rgba(232,68,68,0.1); border-left:4px solid var(--viral); border-radius:4px; font-size:13px; }
 
+
+    /* PHASE 6.5 MOBILE FIXES */
+    @media (max-width: 768px) {
+        header { padding: 20px 20px 0 !important; }
+        main { padding: 20px !important; }
+        body { overflow-x: hidden; width: 100%; }
+        .ency-title { font-size: 32px !important; }
+        .section-body p { word-wrap: break-word; overflow-wrap: break-word; line-height: 1.85 !important; }
+        .categories-grid { grid-template-columns: 1fr !important; }
+        .disease-hero { height: 160px !important; border-radius: 12px !important; }
+        .kv-item { flex-direction: column; gap: 4px; }
+        .kv-key { min-width: auto; }
+        .list-card { flex-direction: column; align-items: flex-start; gap: 12px; }
+        .list-card-icon { align-self: flex-start; }
+    }
+    .section-body { word-wrap: break-word; overflow-wrap: break-word; }
+    
 </style>
 
 	<link rel="stylesheet" href="assets/css/ze-ui.css">
@@ -637,6 +654,7 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 
 
 
+<!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
@@ -778,7 +796,7 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 </main>
 
 <!-- Drawers, Modals & Floating Buttons -->
-<div id="drawer-overlay" class="drawer-overlay" role="presentation" tabindex="-1" onclick="closeAllDrawers()"></div>
+<div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
 
 <div id="toc-drawer" class="toc-drawer">
   <div class="toc-drawer-header">
@@ -845,21 +863,9 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 
 
 
+
+
 <script>
-
-function escapeHTML(str) {
-  if (!str) return '';
-  return String(str).replace(/[&<>'"]/g, 
-    tag => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      "'": '&#39;',
-      '"': '&quot;'
-    }[tag])
-  );
-}
-
 const colorMap = {
 bacterial: '#e8a838',
 viral: '#e84444',
@@ -4572,7 +4578,7 @@ function runGlobalSearch(q) {
   
   const suggestions = matches.slice(0, 10);
   if (suggestions.length === 0) {
-    list.innerHTML = `<li style="color:var(--muted);padding:18px;text-align:center;">No matching zoonoses found for "${escapeHTML(q)}"</li>`;
+    list.innerHTML = `<li style="color:var(--muted);padding:18px;text-align:center;">No matching zoonoses found for "${q}"</li>`;
     return;
   }
   
@@ -4587,7 +4593,7 @@ function runGlobalSearch(q) {
     const name = highlight(s.d.name, ql);
     const aka = highlight(s.d.aka, ql);
     const agent = highlight(s.d.agent, ql);
-    return `<li class="suggestion-item" role="option" data-idx="${i}" data-cat="${s.cat}" data-id="${s.d.id}" tabindex="0" onclick="closeSearch(); showDisease('${s.cat}', '${s.d.id}'); saveSearchQuery('${escapeHTML(q)}');">
+    return `<li class="suggestion-item" role="option" data-idx="${i}" data-cat="${s.cat}" data-id="${s.d.id}" tabindex="0" onclick="closeSearch(); showDisease('${s.cat}', '${s.d.id}'); saveSearchQuery('${q}');">
       <div>
         <div style="font-weight:600;display:flex;align-items:center;gap:8px;">
           ${name} 
@@ -4786,7 +4792,7 @@ function renderDirectory() {
   container.innerHTML = matches.map((item, i) => {
     const isBookmarked = bookmarks.includes(item.d.id);
     return `
-      <div class="disease-card" style="--cc:${colorMap[item.cat]}" role="button" tabindex="0" onclick="showDisease('${item.cat}', '${item.d.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showDisease('${item.cat}', '${item.d.id}') }">
+      <div class="disease-card" style="--cc:${colorMap[item.cat]}" onclick="showDisease('${item.cat}', '${item.d.id}')">
         <div class="disease-num">0${i+1}</div>
         <div class="disease-info">
           <div style="display:flex;align-items:center;gap:8px;">
@@ -4935,7 +4941,7 @@ function renderRelatedDiseases(cat, currentId) {
       <div class="sidebar-card-title" style="margin-bottom:12px;font-size:12px;color:var(--accent)"><svg class="icon" aria-hidden="true" style="width:16px;height:16px;"><use href="assets/icons/ze-icons.svg#shield"></use></svg> Related Zoonoses (One Health Connections)</div>
       <div class="related-grid">
         ${relatedMatches.map(m => `
-          <div class="related-card" style="--cc:${colorMap[m.otherCat]}" role="button" tabindex="0" onclick="showDisease('${m.otherCat}', '${m.other.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showDisease('${m.otherCat}', '${m.other.id}') }">
+          <div class="related-card" style="--cc:${colorMap[m.otherCat]}" onclick="showDisease('${m.otherCat}', '${m.other.id}')">
             <div class="related-tag">${m.otherCat} zoonosis</div>
             <div class="related-name">${m.other.name}</div>
             <div class="related-aka">${m.other.aka}</div>
@@ -4974,7 +4980,7 @@ function renderPaginationNav(cat, currentId) {
   let html = `<div class="pagination-nav">`;
   if (prev) {
     html += `
-      <div class="pagination-btn" style="--cc:${colorMap[cat]}" role="button" tabindex="0" onclick="showDisease('${cat}', '${prev.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showDisease('${cat}', '${prev.id}') }">
+      <div class="pagination-btn" style="--cc:${colorMap[cat]}" onclick="showDisease('${cat}', '${prev.id}')">
         <span class="pag-dir">← Previous Zoonosis</span>
         <span class="pag-name">${prev.name}</span>
       </div>
@@ -4985,7 +4991,7 @@ function renderPaginationNav(cat, currentId) {
   
   if (next) {
     html += `
-      <div class="pagination-btn next" style="--cc:${colorMap[cat]}" role="button" tabindex="0" onclick="showDisease('${cat}', '${next.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showDisease('${cat}', '${next.id}') }">
+      <div class="pagination-btn next" style="--cc:${colorMap[cat]}" onclick="showDisease('${cat}', '${next.id}')">
         <span class="pag-dir">Next Zoonosis →</span>
         <span class="pag-name">${next.name}</span>
       </div>
@@ -5949,7 +5955,7 @@ function searchGlossary(query) {
   });
   
   if (filtered.length === 0) {
-    list.innerHTML = `<div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center;">No glossary definitions match "${escapeHTML(query)}"</div>`;
+    list.innerHTML = `<div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center;">No glossary definitions match "${query}"</div>`;
     return;
   }
   
