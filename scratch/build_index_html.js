@@ -110,8 +110,11 @@ const directoryHtml = `
 </div>
 `.trim();
 
-// Insert the directory view HTML before the About view block
-html = html.replace('<!-- ABOUT VIEW -->', `${directoryHtml}\n\n<!-- ABOUT VIEW -->`);
+if (html.includes('<div class="view" id="view-about">')) {
+  html = html.replace('<div class="view" id="view-about">', `${directoryHtml}\n\n<div class="view" id="view-about">`);
+} else {
+  html = html.replace('<!-- ABOUT VIEW -->', `${directoryHtml}\n\n<!-- ABOUT VIEW -->`);
+}
 console.log("Inserted Directory & Filters view HTML.");
 
 // 3. Add drawers, modals and overlays just before </body>

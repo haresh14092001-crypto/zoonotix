@@ -303,9 +303,29 @@ const glossarySynonyms = {
 };
 
 // --- BOOKMARKS & HISTORY STATE ---
-let bookmarks = JSON.parse(localStorage.getItem('zoonotix.bookmarks')) || [];
-let readingHistory = JSON.parse(localStorage.getItem('zoonotix.history')) || [];
-let readingProgress = JSON.parse(localStorage.getItem('zoonotix.progress')) || {};
+let bookmarks = [];
+try {
+  bookmarks = JSON.parse(localStorage.getItem('zoonotix.bookmarks')) || [];
+  if (!Array.isArray(bookmarks)) bookmarks = [];
+} catch (e) {
+  bookmarks = [];
+}
+
+let readingHistory = [];
+try {
+  readingHistory = JSON.parse(localStorage.getItem('zoonotix.history')) || [];
+  if (!Array.isArray(readingHistory)) readingHistory = [];
+} catch (e) {
+  readingHistory = [];
+}
+
+let readingProgress = {};
+try {
+  readingProgress = JSON.parse(localStorage.getItem('zoonotix.progress')) || {};
+  if (typeof readingProgress !== 'object' || readingProgress === null) readingProgress = {};
+} catch (e) {
+  readingProgress = {};
+}
 
 // --- DIRECTORY FILTER STATE ---
 let activeFilters = {
@@ -364,7 +384,13 @@ function fuzzyMatch(text, query) {
 }
 
 // --- GLOBAL SEARCH ENGINE WITH HISTORY ---
-let recentSearches = JSON.parse(localStorage.getItem('zoonotix.recentSearches')) || [];
+let recentSearches = [];
+try {
+  recentSearches = JSON.parse(localStorage.getItem('zoonotix.recentSearches')) || [];
+  if (!Array.isArray(recentSearches)) recentSearches = [];
+} catch (e) {
+  recentSearches = [];
+}
 const popularSearches = ['Rabies', 'Nipah', 'Anthrax', 'BSE', 'Brucellosis', 'Swine Influenza', 'Swimmer\'s Itch'];
 
 function saveSearchQuery(q) {

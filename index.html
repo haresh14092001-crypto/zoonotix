@@ -625,6 +625,8 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 <div id="ency-content"></div>
 </div>
 
+
+<!-- DIRECTORY & FILTERS VIEW -->
 <!-- DIRECTORY & FILTERS VIEW -->
 <div class="view" id="view-directory">
   <div class="section-title">Disease Directory</div>
@@ -715,372 +717,6 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
     </div>
   </div>
 </div>
-
-<!-- DIRECTORY & FILTERS VIEW -->
-<div class="view" id="view-directory">
-  <div class="section-title">Disease Directory</div>
-  <p class="section-desc">Search, filter, and browse all 38 zoonotic diseases. Combine filters for advanced epidemiological study.</p>
-  
-  <div class="directory-tabs">
-    <button class="dir-tab-btn active" id="dir-tab-all" onclick="setDirectoryTab('all')">All Diseases</button>
-    <button class="dir-tab-btn" id="dir-tab-bookmarks" onclick="setDirectoryTab('bookmarks')">Bookmarks (<span id="bookmark-count-badge">0</span>)</button>
-    <button class="dir-tab-btn" id="dir-tab-history" onclick="setDirectoryTab('history')">Reading History</button>
-  </div>
-
-  <div class="directory-container">
-    <!-- Filter Sidebar -->
-    <aside class="directory-sidebar">
-      <div class="filter-section">
-        <div class="filter-title">Pathogen Group</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="bacterial" onchange="toggleFilter('group', 'bacterial')"> Bacterial</label>
-          <label class="filter-option"><input type="checkbox" value="viral" onchange="toggleFilter('group', 'viral')"> Viral</label>
-          <label class="filter-option"><input type="checkbox" value="fungal" onchange="toggleFilter('group', 'fungal')"> Fungal</label>
-          <label class="filter-option"><input type="checkbox" value="protozoal" onchange="toggleFilter('group', 'protozoal')"> Protozoal</label>
-          <label class="filter-option"><input type="checkbox" value="helminthic" onchange="toggleFilter('group', 'helminthic')"> Helminthic</label>
-          <label class="filter-option"><input type="checkbox" value="rickettsial" onchange="toggleFilter('group', 'rickettsial')"> Rickettsial</label>
-          <label class="filter-option"><input type="checkbox" value="prion" onchange="toggleFilter('group', 'prion')"> Prion</label>
-        </div>
-      </div>
-      
-      <div class="filter-section">
-        <div class="filter-title">Transmission Route</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="food-borne" onchange="toggleFilter('transmission', 'food-borne')"> Food-borne</label>
-          <label class="filter-option"><input type="checkbox" value="water-borne" onchange="toggleFilter('transmission', 'water-borne')"> Water-borne</label>
-          <label class="filter-option"><input type="checkbox" value="milk-borne" onchange="toggleFilter('transmission', 'milk-borne')"> Milk-borne</label>
-          <label class="filter-option"><input type="checkbox" value="meat-borne" onchange="toggleFilter('transmission', 'meat-borne')"> Meat-borne</label>
-          <label class="filter-option"><input type="checkbox" value="airborne" onchange="toggleFilter('transmission', 'airborne')"> Airborne</label>
-          <label class="filter-option"><input type="checkbox" value="vector-borne" onchange="toggleFilter('transmission', 'vector-borne')"> Vector-borne</label>
-          <label class="filter-option"><input type="checkbox" value="direct-contact" onchange="toggleFilter('transmission', 'direct-contact')"> Direct contact</label>
-          <label class="filter-option"><input type="checkbox" value="fomite" onchange="toggleFilter('transmission', 'fomite')"> Fomite</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Animal Hosts</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="cattle" onchange="toggleFilter('host', 'cattle')"> Cattle</label>
-          <label class="filter-option"><input type="checkbox" value="buffalo" onchange="toggleFilter('host', 'buffalo')"> Buffalo</label>
-          <label class="filter-option"><input type="checkbox" value="sheep" onchange="toggleFilter('host', 'sheep')"> Sheep</label>
-          <label class="filter-option"><input type="checkbox" value="goat" onchange="toggleFilter('host', 'goat')"> Goat</label>
-          <label class="filter-option"><input type="checkbox" value="pig" onchange="toggleFilter('host', 'pig')"> Pig</label>
-          <label class="filter-option"><input type="checkbox" value="horse" onchange="toggleFilter('host', 'horse')"> Horse</label>
-          <label class="filter-option"><input type="checkbox" value="dog" onchange="toggleFilter('host', 'dog')"> Dog</label>
-          <label class="filter-option"><input type="checkbox" value="cat" onchange="toggleFilter('host', 'cat')"> Cat</label>
-          <label class="filter-option"><input type="checkbox" value="poultry" onchange="toggleFilter('host', 'poultry')"> Poultry</label>
-          <label class="filter-option"><input type="checkbox" value="wildlife" onchange="toggleFilter('host', 'wildlife')"> Wildlife</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Special Tags</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="notifiable" onchange="toggleFilter('tag', 'notifiable')"> OIE Notifiable</label>
-          <label class="filter-option"><input type="checkbox" value="emerging" onchange="toggleFilter('tag', 'emerging')"> Emerging Disease</label>
-          <label class="filter-option"><input type="checkbox" value="neglected" onchange="toggleFilter('tag', 'neglected')"> Neglected Zoonosis</label>
-          <label class="filter-option"><input type="checkbox" value="occupational" onchange="toggleFilter('tag', 'occupational')"> Occupational Hazard</label>
-        </div>
-      </div>
-      
-      <button class="collapse-btn" style="width:100%;margin-top:16px;" onclick="clearAllFilters()">Clear Filters</button>
-    </aside>
-
-    <!-- Directory Content -->
-    <div class="directory-content-area">
-      <!-- Alphabetical Picker -->
-      <div class="alphabet-picker" id="dir-alphabet-picker"></div>
-      
-      <div class="search-bar" style="margin-bottom:20px;">
-        <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-        <input type="text" id="dir-search-input" placeholder="Search by name, synonym, hosts, vector..." oninput="updateDirectorySearch(this.value)">
-        <button class="collapse-btn" style="padding:4px 8px;margin-right:4px;" onclick="document.getElementById('dir-search-input').value='';updateDirectorySearch('')">Clear</button>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;">
-        <div id="dir-results-count">0 DISEASES FOUND</div>
-        <button class="collapse-btn" id="mobile-filter-btn" style="display:inline-block;" onclick="toggleMobileFilters(true)">Filters</button>
-      </div>
-
-      <div class="disease-list" id="dir-disease-list"></div>
-    </div>
-  </div>
-</div>
-
-<!-- DIRECTORY & FILTERS VIEW -->
-<div class="view" id="view-directory">
-  <div class="section-title">Disease Directory</div>
-  <p class="section-desc">Search, filter, and browse all 38 zoonotic diseases. Combine filters for advanced epidemiological study.</p>
-  
-  <div class="directory-tabs">
-    <button class="dir-tab-btn active" id="dir-tab-all" onclick="setDirectoryTab('all')">All Diseases</button>
-    <button class="dir-tab-btn" id="dir-tab-bookmarks" onclick="setDirectoryTab('bookmarks')">Bookmarks (<span id="bookmark-count-badge">0</span>)</button>
-    <button class="dir-tab-btn" id="dir-tab-history" onclick="setDirectoryTab('history')">Reading History</button>
-  </div>
-
-  <div class="directory-container">
-    <!-- Filter Sidebar -->
-    <aside class="directory-sidebar">
-      <div class="filter-section">
-        <div class="filter-title">Pathogen Group</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="bacterial" onchange="toggleFilter('group', 'bacterial')"> Bacterial</label>
-          <label class="filter-option"><input type="checkbox" value="viral" onchange="toggleFilter('group', 'viral')"> Viral</label>
-          <label class="filter-option"><input type="checkbox" value="fungal" onchange="toggleFilter('group', 'fungal')"> Fungal</label>
-          <label class="filter-option"><input type="checkbox" value="protozoal" onchange="toggleFilter('group', 'protozoal')"> Protozoal</label>
-          <label class="filter-option"><input type="checkbox" value="helminthic" onchange="toggleFilter('group', 'helminthic')"> Helminthic</label>
-          <label class="filter-option"><input type="checkbox" value="rickettsial" onchange="toggleFilter('group', 'rickettsial')"> Rickettsial</label>
-          <label class="filter-option"><input type="checkbox" value="prion" onchange="toggleFilter('group', 'prion')"> Prion</label>
-        </div>
-      </div>
-      
-      <div class="filter-section">
-        <div class="filter-title">Transmission Route</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="food-borne" onchange="toggleFilter('transmission', 'food-borne')"> Food-borne</label>
-          <label class="filter-option"><input type="checkbox" value="water-borne" onchange="toggleFilter('transmission', 'water-borne')"> Water-borne</label>
-          <label class="filter-option"><input type="checkbox" value="milk-borne" onchange="toggleFilter('transmission', 'milk-borne')"> Milk-borne</label>
-          <label class="filter-option"><input type="checkbox" value="meat-borne" onchange="toggleFilter('transmission', 'meat-borne')"> Meat-borne</label>
-          <label class="filter-option"><input type="checkbox" value="airborne" onchange="toggleFilter('transmission', 'airborne')"> Airborne</label>
-          <label class="filter-option"><input type="checkbox" value="vector-borne" onchange="toggleFilter('transmission', 'vector-borne')"> Vector-borne</label>
-          <label class="filter-option"><input type="checkbox" value="direct-contact" onchange="toggleFilter('transmission', 'direct-contact')"> Direct contact</label>
-          <label class="filter-option"><input type="checkbox" value="fomite" onchange="toggleFilter('transmission', 'fomite')"> Fomite</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Animal Hosts</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="cattle" onchange="toggleFilter('host', 'cattle')"> Cattle</label>
-          <label class="filter-option"><input type="checkbox" value="buffalo" onchange="toggleFilter('host', 'buffalo')"> Buffalo</label>
-          <label class="filter-option"><input type="checkbox" value="sheep" onchange="toggleFilter('host', 'sheep')"> Sheep</label>
-          <label class="filter-option"><input type="checkbox" value="goat" onchange="toggleFilter('host', 'goat')"> Goat</label>
-          <label class="filter-option"><input type="checkbox" value="pig" onchange="toggleFilter('host', 'pig')"> Pig</label>
-          <label class="filter-option"><input type="checkbox" value="horse" onchange="toggleFilter('host', 'horse')"> Horse</label>
-          <label class="filter-option"><input type="checkbox" value="dog" onchange="toggleFilter('host', 'dog')"> Dog</label>
-          <label class="filter-option"><input type="checkbox" value="cat" onchange="toggleFilter('host', 'cat')"> Cat</label>
-          <label class="filter-option"><input type="checkbox" value="poultry" onchange="toggleFilter('host', 'poultry')"> Poultry</label>
-          <label class="filter-option"><input type="checkbox" value="wildlife" onchange="toggleFilter('host', 'wildlife')"> Wildlife</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Special Tags</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="notifiable" onchange="toggleFilter('tag', 'notifiable')"> OIE Notifiable</label>
-          <label class="filter-option"><input type="checkbox" value="emerging" onchange="toggleFilter('tag', 'emerging')"> Emerging Disease</label>
-          <label class="filter-option"><input type="checkbox" value="neglected" onchange="toggleFilter('tag', 'neglected')"> Neglected Zoonosis</label>
-          <label class="filter-option"><input type="checkbox" value="occupational" onchange="toggleFilter('tag', 'occupational')"> Occupational Hazard</label>
-        </div>
-      </div>
-      
-      <button class="collapse-btn" style="width:100%;margin-top:16px;" onclick="clearAllFilters()">Clear Filters</button>
-    </aside>
-
-    <!-- Directory Content -->
-    <div class="directory-content-area">
-      <!-- Alphabetical Picker -->
-      <div class="alphabet-picker" id="dir-alphabet-picker"></div>
-      
-      <div class="search-bar" style="margin-bottom:20px;">
-        <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-        <input type="text" id="dir-search-input" placeholder="Search by name, synonym, hosts, vector..." oninput="updateDirectorySearch(this.value)">
-        <button class="collapse-btn" style="padding:4px 8px;margin-right:4px;" onclick="document.getElementById('dir-search-input').value='';updateDirectorySearch('')">Clear</button>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;">
-        <div id="dir-results-count">0 DISEASES FOUND</div>
-        <button class="collapse-btn" id="mobile-filter-btn" style="display:inline-block;" onclick="toggleMobileFilters(true)">Filters</button>
-      </div>
-
-      <div class="disease-list" id="dir-disease-list"></div>
-    </div>
-  </div>
-</div>
-
-<!-- DIRECTORY & FILTERS VIEW -->
-<div class="view" id="view-directory">
-  <div class="section-title">Disease Directory</div>
-  <p class="section-desc">Search, filter, and browse all 38 zoonotic diseases. Combine filters for advanced epidemiological study.</p>
-  
-  <div class="directory-tabs">
-    <button class="dir-tab-btn active" id="dir-tab-all" onclick="setDirectoryTab('all')">All Diseases</button>
-    <button class="dir-tab-btn" id="dir-tab-bookmarks" onclick="setDirectoryTab('bookmarks')">Bookmarks (<span id="bookmark-count-badge">0</span>)</button>
-    <button class="dir-tab-btn" id="dir-tab-history" onclick="setDirectoryTab('history')">Reading History</button>
-  </div>
-
-  <div class="directory-container">
-    <!-- Filter Sidebar -->
-    <aside class="directory-sidebar">
-      <div class="filter-section">
-        <div class="filter-title">Pathogen Group</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="bacterial" onchange="toggleFilter('group', 'bacterial')"> Bacterial</label>
-          <label class="filter-option"><input type="checkbox" value="viral" onchange="toggleFilter('group', 'viral')"> Viral</label>
-          <label class="filter-option"><input type="checkbox" value="fungal" onchange="toggleFilter('group', 'fungal')"> Fungal</label>
-          <label class="filter-option"><input type="checkbox" value="protozoal" onchange="toggleFilter('group', 'protozoal')"> Protozoal</label>
-          <label class="filter-option"><input type="checkbox" value="helminthic" onchange="toggleFilter('group', 'helminthic')"> Helminthic</label>
-          <label class="filter-option"><input type="checkbox" value="rickettsial" onchange="toggleFilter('group', 'rickettsial')"> Rickettsial</label>
-          <label class="filter-option"><input type="checkbox" value="prion" onchange="toggleFilter('group', 'prion')"> Prion</label>
-        </div>
-      </div>
-      
-      <div class="filter-section">
-        <div class="filter-title">Transmission Route</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="food-borne" onchange="toggleFilter('transmission', 'food-borne')"> Food-borne</label>
-          <label class="filter-option"><input type="checkbox" value="water-borne" onchange="toggleFilter('transmission', 'water-borne')"> Water-borne</label>
-          <label class="filter-option"><input type="checkbox" value="milk-borne" onchange="toggleFilter('transmission', 'milk-borne')"> Milk-borne</label>
-          <label class="filter-option"><input type="checkbox" value="meat-borne" onchange="toggleFilter('transmission', 'meat-borne')"> Meat-borne</label>
-          <label class="filter-option"><input type="checkbox" value="airborne" onchange="toggleFilter('transmission', 'airborne')"> Airborne</label>
-          <label class="filter-option"><input type="checkbox" value="vector-borne" onchange="toggleFilter('transmission', 'vector-borne')"> Vector-borne</label>
-          <label class="filter-option"><input type="checkbox" value="direct-contact" onchange="toggleFilter('transmission', 'direct-contact')"> Direct contact</label>
-          <label class="filter-option"><input type="checkbox" value="fomite" onchange="toggleFilter('transmission', 'fomite')"> Fomite</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Animal Hosts</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="cattle" onchange="toggleFilter('host', 'cattle')"> Cattle</label>
-          <label class="filter-option"><input type="checkbox" value="buffalo" onchange="toggleFilter('host', 'buffalo')"> Buffalo</label>
-          <label class="filter-option"><input type="checkbox" value="sheep" onchange="toggleFilter('host', 'sheep')"> Sheep</label>
-          <label class="filter-option"><input type="checkbox" value="goat" onchange="toggleFilter('host', 'goat')"> Goat</label>
-          <label class="filter-option"><input type="checkbox" value="pig" onchange="toggleFilter('host', 'pig')"> Pig</label>
-          <label class="filter-option"><input type="checkbox" value="horse" onchange="toggleFilter('host', 'horse')"> Horse</label>
-          <label class="filter-option"><input type="checkbox" value="dog" onchange="toggleFilter('host', 'dog')"> Dog</label>
-          <label class="filter-option"><input type="checkbox" value="cat" onchange="toggleFilter('host', 'cat')"> Cat</label>
-          <label class="filter-option"><input type="checkbox" value="poultry" onchange="toggleFilter('host', 'poultry')"> Poultry</label>
-          <label class="filter-option"><input type="checkbox" value="wildlife" onchange="toggleFilter('host', 'wildlife')"> Wildlife</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Special Tags</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="notifiable" onchange="toggleFilter('tag', 'notifiable')"> OIE Notifiable</label>
-          <label class="filter-option"><input type="checkbox" value="emerging" onchange="toggleFilter('tag', 'emerging')"> Emerging Disease</label>
-          <label class="filter-option"><input type="checkbox" value="neglected" onchange="toggleFilter('tag', 'neglected')"> Neglected Zoonosis</label>
-          <label class="filter-option"><input type="checkbox" value="occupational" onchange="toggleFilter('tag', 'occupational')"> Occupational Hazard</label>
-        </div>
-      </div>
-      
-      <button class="collapse-btn" style="width:100%;margin-top:16px;" onclick="clearAllFilters()">Clear Filters</button>
-    </aside>
-
-    <!-- Directory Content -->
-    <div class="directory-content-area">
-      <!-- Alphabetical Picker -->
-      <div class="alphabet-picker" id="dir-alphabet-picker"></div>
-      
-      <div class="search-bar" style="margin-bottom:20px;">
-        <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-        <input type="text" id="dir-search-input" placeholder="Search by name, synonym, hosts, vector..." oninput="updateDirectorySearch(this.value)">
-        <button class="collapse-btn" style="padding:4px 8px;margin-right:4px;" onclick="document.getElementById('dir-search-input').value='';updateDirectorySearch('')">Clear</button>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;">
-        <div id="dir-results-count">0 DISEASES FOUND</div>
-        <button class="collapse-btn" id="mobile-filter-btn" style="display:inline-block;" onclick="toggleMobileFilters(true)">Filters</button>
-      </div>
-
-      <div class="disease-list" id="dir-disease-list"></div>
-    </div>
-  </div>
-</div>
-
-<!-- DIRECTORY & FILTERS VIEW -->
-<div class="view" id="view-directory">
-  <div class="section-title">Disease Directory</div>
-  <p class="section-desc">Search, filter, and browse all 38 zoonotic diseases. Combine filters for advanced epidemiological study.</p>
-  
-  <div class="directory-tabs">
-    <button class="dir-tab-btn active" id="dir-tab-all" onclick="setDirectoryTab('all')">All Diseases</button>
-    <button class="dir-tab-btn" id="dir-tab-bookmarks" onclick="setDirectoryTab('bookmarks')">Bookmarks (<span id="bookmark-count-badge">0</span>)</button>
-    <button class="dir-tab-btn" id="dir-tab-history" onclick="setDirectoryTab('history')">Reading History</button>
-  </div>
-
-  <div class="directory-container">
-    <!-- Filter Sidebar -->
-    <aside class="directory-sidebar">
-      <div class="filter-section">
-        <div class="filter-title">Pathogen Group</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="bacterial" onchange="toggleFilter('group', 'bacterial')"> Bacterial</label>
-          <label class="filter-option"><input type="checkbox" value="viral" onchange="toggleFilter('group', 'viral')"> Viral</label>
-          <label class="filter-option"><input type="checkbox" value="fungal" onchange="toggleFilter('group', 'fungal')"> Fungal</label>
-          <label class="filter-option"><input type="checkbox" value="protozoal" onchange="toggleFilter('group', 'protozoal')"> Protozoal</label>
-          <label class="filter-option"><input type="checkbox" value="helminthic" onchange="toggleFilter('group', 'helminthic')"> Helminthic</label>
-          <label class="filter-option"><input type="checkbox" value="rickettsial" onchange="toggleFilter('group', 'rickettsial')"> Rickettsial</label>
-          <label class="filter-option"><input type="checkbox" value="prion" onchange="toggleFilter('group', 'prion')"> Prion</label>
-        </div>
-      </div>
-      
-      <div class="filter-section">
-        <div class="filter-title">Transmission Route</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="food-borne" onchange="toggleFilter('transmission', 'food-borne')"> Food-borne</label>
-          <label class="filter-option"><input type="checkbox" value="water-borne" onchange="toggleFilter('transmission', 'water-borne')"> Water-borne</label>
-          <label class="filter-option"><input type="checkbox" value="milk-borne" onchange="toggleFilter('transmission', 'milk-borne')"> Milk-borne</label>
-          <label class="filter-option"><input type="checkbox" value="meat-borne" onchange="toggleFilter('transmission', 'meat-borne')"> Meat-borne</label>
-          <label class="filter-option"><input type="checkbox" value="airborne" onchange="toggleFilter('transmission', 'airborne')"> Airborne</label>
-          <label class="filter-option"><input type="checkbox" value="vector-borne" onchange="toggleFilter('transmission', 'vector-borne')"> Vector-borne</label>
-          <label class="filter-option"><input type="checkbox" value="direct-contact" onchange="toggleFilter('transmission', 'direct-contact')"> Direct contact</label>
-          <label class="filter-option"><input type="checkbox" value="fomite" onchange="toggleFilter('transmission', 'fomite')"> Fomite</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Animal Hosts</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="cattle" onchange="toggleFilter('host', 'cattle')"> Cattle</label>
-          <label class="filter-option"><input type="checkbox" value="buffalo" onchange="toggleFilter('host', 'buffalo')"> Buffalo</label>
-          <label class="filter-option"><input type="checkbox" value="sheep" onchange="toggleFilter('host', 'sheep')"> Sheep</label>
-          <label class="filter-option"><input type="checkbox" value="goat" onchange="toggleFilter('host', 'goat')"> Goat</label>
-          <label class="filter-option"><input type="checkbox" value="pig" onchange="toggleFilter('host', 'pig')"> Pig</label>
-          <label class="filter-option"><input type="checkbox" value="horse" onchange="toggleFilter('host', 'horse')"> Horse</label>
-          <label class="filter-option"><input type="checkbox" value="dog" onchange="toggleFilter('host', 'dog')"> Dog</label>
-          <label class="filter-option"><input type="checkbox" value="cat" onchange="toggleFilter('host', 'cat')"> Cat</label>
-          <label class="filter-option"><input type="checkbox" value="poultry" onchange="toggleFilter('host', 'poultry')"> Poultry</label>
-          <label class="filter-option"><input type="checkbox" value="wildlife" onchange="toggleFilter('host', 'wildlife')"> Wildlife</label>
-        </div>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-title">Special Tags</div>
-        <div class="filter-options">
-          <label class="filter-option"><input type="checkbox" value="notifiable" onchange="toggleFilter('tag', 'notifiable')"> OIE Notifiable</label>
-          <label class="filter-option"><input type="checkbox" value="emerging" onchange="toggleFilter('tag', 'emerging')"> Emerging Disease</label>
-          <label class="filter-option"><input type="checkbox" value="neglected" onchange="toggleFilter('tag', 'neglected')"> Neglected Zoonosis</label>
-          <label class="filter-option"><input type="checkbox" value="occupational" onchange="toggleFilter('tag', 'occupational')"> Occupational Hazard</label>
-        </div>
-      </div>
-      
-      <button class="collapse-btn" style="width:100%;margin-top:16px;" onclick="clearAllFilters()">Clear Filters</button>
-    </aside>
-
-    <!-- Directory Content -->
-    <div class="directory-content-area">
-      <!-- Alphabetical Picker -->
-      <div class="alphabet-picker" id="dir-alphabet-picker"></div>
-      
-      <div class="search-bar" style="margin-bottom:20px;">
-        <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
-        <input type="text" id="dir-search-input" placeholder="Search by name, synonym, hosts, vector..." oninput="updateDirectorySearch(this.value)">
-        <button class="collapse-btn" style="padding:4px 8px;margin-right:4px;" onclick="document.getElementById('dir-search-input').value='';updateDirectorySearch('')">Clear</button>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;">
-        <div id="dir-results-count">0 DISEASES FOUND</div>
-        <button class="collapse-btn" id="mobile-filter-btn" style="display:inline-block;" onclick="toggleMobileFilters(true)">Filters</button>
-      </div>
-
-      <div class="disease-list" id="dir-disease-list"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT VIEW -->
 
 <div class="view" id="view-about">
 <div class="section-title">About ZoonotiX</div>
@@ -1150,11 +786,83 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
   </div>
   <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
 </div>
+<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
+  <h3>Veterinary Zoonoses Glossary</h3>
+  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
+  <div class="search-bar" style="margin-bottom:16px;">
+    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
+    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
+  </div>
+  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
+</div>
+<div class="about-card" id="about-glossary-section" style="grid-column: 1 / -1; margin-top:16px;">
+  <h3>Veterinary Zoonoses Glossary</h3>
+  <p style="margin-bottom:16px;">Search key epidemiological, public health, and microbiological terms used in this reference manual.</p>
+  <div class="search-bar" style="margin-bottom:16px;">
+    <span class="search-icon" aria-hidden="true"><svg class="icon icon-search" aria-hidden="true"><use href="assets/icons/ze-icons.svg#search"></use></svg></span>
+    <input type="text" id="glossary-search-input" placeholder="Search glossary terms..." oninput="searchGlossary(this.value)">
+  </div>
+  <div class="quick-facts" id="glossary-results-list" style="max-height:400px;overflow-y:auto;gap:12px;border: 1px solid var(--border);padding:12px;border-radius:10px;"></div>
+</div>
 </div>
 </div>
 
 </main>
 
+<!-- Drawers, Modals & Floating Buttons -->
+<div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
+
+<div id="toc-drawer" class="toc-drawer">
+  <div class="toc-drawer-header">
+    <div class="toc-drawer-title">Table of Contents</div>
+    <button class="toc-drawer-close" onclick="closeAllDrawers()">&times;</button>
+  </div>
+  <div class="toc-drawer-content" id="toc-drawer-list"></div>
+</div>
+
+<div id="glossary-tooltip" class="glossary-tooltip">
+  <div class="gt-header">
+    <div class="gt-term" id="gt-term-title">Term</div>
+    <button class="gt-close" onclick="closeGlossaryTooltip()">&times;</button>
+  </div>
+  <div class="gt-def" id="gt-term-def">Definition goes here...</div>
+  <a href="#" class="gt-def-link" onclick="openGlossaryTab(event)">Browse full glossary →</a>
+</div>
+
+<button id="back-to-top-btn" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+  &uarr;
+</button>
+
+<button id="mobile-toc-btn" class="mobile-toc-fab" onclick="toggleMobileTOC(true)" aria-label="Table of Contents">
+  <svg class="icon" aria-hidden="true" style="width:20px;height:20px;"><use href="assets/icons/ze-icons.svg#book"></use></svg>
+</button>
+<!-- Drawers, Modals & Floating Buttons -->
+<div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
+
+<div id="toc-drawer" class="toc-drawer">
+  <div class="toc-drawer-header">
+    <div class="toc-drawer-title">Table of Contents</div>
+    <button class="toc-drawer-close" onclick="closeAllDrawers()">&times;</button>
+  </div>
+  <div class="toc-drawer-content" id="toc-drawer-list"></div>
+</div>
+
+<div id="glossary-tooltip" class="glossary-tooltip">
+  <div class="gt-header">
+    <div class="gt-term" id="gt-term-title">Term</div>
+    <button class="gt-close" onclick="closeGlossaryTooltip()">&times;</button>
+  </div>
+  <div class="gt-def" id="gt-term-def">Definition goes here...</div>
+  <a href="#" class="gt-def-link" onclick="openGlossaryTab(event)">Browse full glossary →</a>
+</div>
+
+<button id="back-to-top-btn" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+  &uarr;
+</button>
+
+<button id="mobile-toc-btn" class="mobile-toc-fab" onclick="toggleMobileTOC(true)" aria-label="Table of Contents">
+  <svg class="icon" aria-hidden="true" style="width:20px;height:20px;"><use href="assets/icons/ze-icons.svg#book"></use></svg>
+</button>
 <!-- Drawers, Modals & Floating Buttons -->
 <div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
 
@@ -1200,6 +908,10 @@ Select a category to explore diseases, their hosts, transmission, and clinical s
 </button>
 
 <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
+
+
+
 
 
 
@@ -4699,9 +4411,29 @@ const glossarySynonyms = {
 };
 
 // --- BOOKMARKS & HISTORY STATE ---
-let bookmarks = JSON.parse(localStorage.getItem('zoonotix.bookmarks')) || [];
-let readingHistory = JSON.parse(localStorage.getItem('zoonotix.history')) || [];
-let readingProgress = JSON.parse(localStorage.getItem('zoonotix.progress')) || {};
+let bookmarks = [];
+try {
+  bookmarks = JSON.parse(localStorage.getItem('zoonotix.bookmarks')) || [];
+  if (!Array.isArray(bookmarks)) bookmarks = [];
+} catch (e) {
+  bookmarks = [];
+}
+
+let readingHistory = [];
+try {
+  readingHistory = JSON.parse(localStorage.getItem('zoonotix.history')) || [];
+  if (!Array.isArray(readingHistory)) readingHistory = [];
+} catch (e) {
+  readingHistory = [];
+}
+
+let readingProgress = {};
+try {
+  readingProgress = JSON.parse(localStorage.getItem('zoonotix.progress')) || {};
+  if (typeof readingProgress !== 'object' || readingProgress === null) readingProgress = {};
+} catch (e) {
+  readingProgress = {};
+}
 
 // --- DIRECTORY FILTER STATE ---
 let activeFilters = {
@@ -4760,7 +4492,13 @@ function fuzzyMatch(text, query) {
 }
 
 // --- GLOBAL SEARCH ENGINE WITH HISTORY ---
-let recentSearches = JSON.parse(localStorage.getItem('zoonotix.recentSearches')) || [];
+let recentSearches = [];
+try {
+  recentSearches = JSON.parse(localStorage.getItem('zoonotix.recentSearches')) || [];
+  if (!Array.isArray(recentSearches)) recentSearches = [];
+} catch (e) {
+  recentSearches = [];
+}
 const popularSearches = ['Rabies', 'Nipah', 'Anthrax', 'BSE', 'Brucellosis', 'Swine Influenza', 'Swimmer\'s Itch'];
 
 function saveSearchQuery(q) {
