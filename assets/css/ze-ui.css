@@ -147,6 +147,7 @@ line-height: 1.2;
 	border-radius: 16px;
 	padding: 28px;
 	cursor: pointer;
+	touch-action: manipulation;
 	transition: all 0.25s;
 	position: relative;
 	overflow: hidden;
@@ -240,6 +241,7 @@ line-height: 1.2;
 	border-radius: 12px;
 	padding: 22px 24px;
 	cursor: pointer;
+	touch-action: manipulation;
 	transition: all 0.2s;
 	display: flex; align-items: center; gap: 16px;
 }
@@ -588,15 +590,53 @@ input:focus-visible,
 .search-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(11, 15, 26, 0.85);
+  background: rgba(11, 15, 26, 0.95);
   backdrop-filter: blur(8px);
-  z-index: 1000;
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
   display: flex;
-  justify-content: center;
-  padding: 40px 16px;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
-.search-overlay[hidden] {
-  display: none;
+.search-overlay:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-overlay .search-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+}
+.search-overlay .search-input-container {
+  margin-top: 60px;
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-overlay input {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+}
+.search-overlay input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(126, 211, 33, 0.2);
 }
 .search-panel {
   width: 100%;
@@ -669,25 +709,29 @@ input:focus-visible,
 /* Floating Search Button */
 .floating-search-btn {
   position: fixed;
-  right: 24px;
   bottom: 24px;
+  right: 24px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  background: var(--accent);
+  color: #000;
   border: none;
-  color: #fff;
-  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  z-index: 90;
-  transition: transform 0.2s;
+  z-index: 9900;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .floating-search-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+.floating-search-btn svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* TOC Links */
@@ -1473,3 +1517,19 @@ input:focus-visible,
   font-size: 10px;
 }
 
+
+/* Phase 10.6 Layout & Mobile Fixes */
+.section-body, .section-body *, .kv-val { overflow-wrap: anywhere; word-break: break-word; }
+@media (max-width: 900px) {
+  header { padding: 20px 20px 0 !important; }
+  main { padding: 20px !important; }
+  body { overflow-x: hidden; width: 100%; }
+  .ency-title { font-size: 32px !important; }
+  .section-body p, .section-body td, .kv-val { overflow-wrap: anywhere; word-break: break-word; line-height: 1.85 !important; }
+  .categories-grid { grid-template-columns: 1fr !important; }
+  .disease-hero { height: 160px !important; border-radius: 12px !important; }
+  .kv-item { flex-direction: column; gap: 4px; }
+  .kv-key { min-width: auto; }
+  .list-card { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .list-card-icon { align-self: flex-start; }
+}
