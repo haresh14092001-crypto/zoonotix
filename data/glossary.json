@@ -1,0 +1,27 @@
+{
+  zoonosis: { term: "Zoonosis", def: "A disease or infection that is naturally transmissible from vertebrate animals to humans." },
+  anthroponotic: { term: "Anthroponotic", def: "A disease transmissible from humans to other humans (or from humans to animals)." },
+  sylvatic: { term: "Sylvatic", def: "Occurring in, or affecting, wild animals (from the Latin 'sylva' meaning forest)." },
+  fomite: { term: "Fomite", def: "An inanimate object or substance (like clothing, bedding, or farm equipment) capable of transmitting infectious organisms." },
+  vector: { term: "Vector", def: "An organism (typically a biting insect or tick) that transmits a disease or parasite from one animal to another." },
+  reservoir: { term: "Reservoir Host", def: "A host in which an infectious agent normally lives, grows, and multiplies, without causing severe disease to the host itself." },
+  cfr: { term: "Case Fatality Rate (CFR)", def: "The proportion of people (or animals) diagnosed with a disease who die from it within a specified period." },
+  incubation: { term: "Incubation Period", def: "The time elapsed between exposure to a pathogenic organism and when symptoms first become apparent." },
+  notifiable: { term: "Notifiable Disease", def: "Any disease that is required by law to be reported to government public health or veterinary authorities." },
+  prophylaxis: { term: "Prophylaxis", def: "Treatment or action taken to prevent a disease from occurring (e.g., vaccination or preventative medication)." },
+  apicomplexan: { term: "Apicomplexan", def: "A large phylum of parasitic alveolates, characterized by the presence of a unique apical complex organelle." },
+  cercaria: { term: "Cercaria", def: "The larval form of trematode parasites (like Schistosoma) that sheds from the snail host and infects the definitive host by skin penetration." },
+  hydrophobia: { term: "Hydrophobia", def: "Extreme or irrational fear of water, a classical neurological symptom of rabies in humans caused by painful throat spasms during swallowing." },
+  encephalitis: { term: "Encephalitis", def: "Acute inflammation of the brain, often caused by viral infections (like Japanese Encephalitis or rabies)." },
+  splenomegaly: { term: "Splenomegaly", def: "Enlargement of the spleen, commonly seen in systemic infections such as Visceral Leishmaniasis (Kala-azar)." },
+  myalgia: { term: "Myalgia", def: "Muscle pain or soreness, a common clinical sign of systemic febrile illnesses like Trichinellosis and Leptospirosis." },
+  prion: { term: "Prion", def: "An abnormal, pathogenic agent that is transmissible and able to induce abnormal folding of specific normal cellular proteins (PrP) in the brain." },
+  mbm: { term: "Meat and Bone Meal (MBM)", def: "An animal protein product derived from rendering animal tissues, historically used in cattle feed and linked to the spread of BSE." },
+  vcjd: { term: "Variant Creutzfeldt-Jakob Disease (vCJD)", def: "A rare, fatal neurodegenerative disease in humans linked to eating beef contaminated with Bovine Spongiform Encephalopathy (BSE)." },
+  tse: { term: "Transmissible Spongiform Encephalopathy (TSE)", def: "A group of progressive, fatal neurodegenerative conditions in humans and animals caused by prions (includes BSE, Scrapie, CWD)." },
+  haccp: { term: "HACCP", def: "Hazard Analysis Critical Control Point - a systematic preventive approach to food safety from biological, chemical, and physical hazards." },
+  pep: { term: "Post-Exposure Prophylaxis (PEP)", def: "Preventative medical treatment started after exposure to a pathogen (like rabies virus) to prevent infection from taking hold." },
+  onehealth: { term: "One Health", def: "A collaborative, multisectoral, and transdisciplinary approach working at local, regional, national, and global levels to achieve optimal health outcomes recognizing the interconnection between people, animals, plants, and their shared environment." }
+};
+
+// Create a synonym map for highlighting matching terms

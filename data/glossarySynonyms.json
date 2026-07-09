@@ -1,0 +1,19 @@
+{
+  'zoonotic': 'zoonosis',
+  'zoonoses': 'zoonosis',
+  'case fatality rate': 'cfr',
+  'case fatality rates': 'cfr',
+  'transmission vector': 'vector',
+  'vectors': 'vector',
+  'fomites': 'fomite',
+  'reservoirs': 'reservoir',
+  'incubation period': 'incubation',
+  'incubation periods': 'incubation',
+  'notifiable diseases': 'notifiable',
+  'prophylactic': 'prophylaxis',
+  'apicomplexans': 'apicomplexan',
+  'cercariae': 'cercaria',
+  'prions': 'prion',
+  'one health': 'onehealth',
+  'one-health': 'onehealth'
+}
